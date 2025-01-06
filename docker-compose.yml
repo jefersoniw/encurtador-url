@@ -1,0 +1,53 @@
+services:
+  # php
+  app_enc_url:
+    build:
+      context: .
+      dockerfile: dockerfiles/php/Dockerfile
+    image: app_enc_url
+    container_name: app_enc_url
+    tty: true
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/var/www
+    networks:
+      - laravel_app
+
+  # nginx
+  nginx_enc_url:
+    image: nginx:alpine
+    container_name: nginx_enc_url
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www
+      - ./dockerfiles/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - laravel_app
+
+  # redis
+  redis_enc_url:
+    image: redis:latest
+    networks:
+        - laravel_app
+
+  # mysql
+  db_enc_url:
+    image: mysql:5.7.22
+    restart: unless-stopped
+    environment:
+        MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+        MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+        MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
+        MYSQL_USER: ${DB_USERNAME:-username}
+    volumes:
+        - ./.docker/mysql/dbdata:/var/lib/mysql
+    ports:
+        - "3388:3306"
+    networks:
+        - laravel_app
+
+networks:
+  laravel_app:
+    driver: bridge
