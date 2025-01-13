@@ -1,5 +1,5 @@
-require("./Utils");
+import * as Utils from "./Utils";
+import * as Encurtador from "./encurtador/script";
 
-if (window.location.pathname.includes("/auth/login")) {
-    window.Auth = require("./Auth/login");
-}
+window.Utils = Utils;
+window.Encurtador = Encurtador;

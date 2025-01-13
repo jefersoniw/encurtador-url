@@ -1,5 +1,0 @@
-$(() => {
-    habilitaEventos();
-});
-
-const habilitaEventos = () => {};

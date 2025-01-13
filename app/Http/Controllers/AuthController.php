@@ -2,22 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class AuthController extends Controller
 {
     public function __construct() {}
+
     public function index()
     {
-        return view('welcome');
-    }
-    public function login()
-    {
-        return view('auth.login');
-    }
-
-    public function register()
-    {
-        return view('auth.register');
+        return view('encurtador.index');
     }
 }
