@@ -19,7 +19,9 @@
                                     <h5 class="card-title text-center pb-0 fs-4">Cole a URL a ser encurtada</h5>
                                 </div>
 
-                                <form class="row g-3 needs-validation" id="form-encurtar-url">
+                                <form class="row g-3 needs-validation" id="form-encurtar-url" method="post">
+                                    @csrf
+
                                     <div class="col-12">
                                         <input type="text" name="url" class="form-control" id="url_id"
                                             required placeholder="cole aqui a sua url">
@@ -36,8 +38,8 @@
                                     </div>
 
                                     <div class="col-12 container-button">
-                                        <button class="btn btn-primary w-100" type="submit">
-                                            <i class="bi bi-scissors"></i>Encurtar URL
+                                        <button class="btn btn-primary w-100 btn-button-encurtar" type="submit">
+                                            <i class="bi bi-scissors"></i> Encurtar URL
                                         </button>
                                     </div>
 
