@@ -15,7 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', [AuthController::class, 'index']);
-Route::get('/', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [AuthController::class, 'index'])->name('index');
