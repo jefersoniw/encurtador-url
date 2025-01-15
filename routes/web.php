@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::post('/store', [HomeController::class, 'store'])->name('store');
+route::get('/{url_enc}', [HomeController::class, 'show'])->name('show');

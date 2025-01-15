@@ -25,4 +25,12 @@ class UrlRequest extends FormRequest
             'url' => 'required|url'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Campo obrigatório!',
+            'url' => 'O Campo precisa ser uma url válida!'
+        ];
+    }
 }
