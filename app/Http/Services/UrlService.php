@@ -19,7 +19,7 @@ class UrlService
 
       $url = $this->record->create([
         'url' => $request['url'],
-        'enc_url' => Str::random(6)
+        'enc_url' => url(Str::random(6))
       ]);
       if (!$url) {
         throw new Exception("Erro ao encurtar url!");
@@ -35,6 +35,23 @@ class UrlService
     } catch (Exception $error) {
       DB::rollBack();
 
+      return [
+        'error' => true,
+        'msg' => $error->getMessage()
+      ];
+    }
+  }
+
+  public function findUrl(string $url_enc)
+  {
+    try {
+      $url = $this->record->where('enc_url', url($url_enc))->first();
+      if (!$url) {
+        throw new Exception("Url não encontrada!");
+      }
+
+      return $url;
+    } catch (Exception $error) {
       return [
         'error' => true,
         'msg' => $error->getMessage()

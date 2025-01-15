@@ -3,6 +3,12 @@
     <div class="container">
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
+                @if (session('message'))
+                    <div class="alert alert-danger">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
                 <div class="row justify-content-center">
                     <div class="col-md-8 d-flex flex-column align-items-center justify-content-center">
 
@@ -25,7 +31,7 @@
                                     <div class="col-12">
                                         <input type="text" name="url" class="form-control" id="url_id"
                                             required placeholder="cole aqui a sua url">
-                                        <div class="error-url"></div>
+                                        <div class="error-url text-danger"></div>
                                     </div>
 
                                     <div class="col-12 container-url-encurtada">
@@ -38,9 +44,23 @@
                                     </div>
 
                                     <div class="col-12 container-button">
-                                        <button class="btn btn-primary w-100 btn-button-encurtar" type="submit">
-                                            <i class="bi bi-scissors"></i> Encurtar URL
-                                        </button>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-primary w-100 btn-button-encurtar"
+                                                    type="submit">
+                                                    <i class="bi bi-scissors"></i> Encurtar URL
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href="{{ route('index') }}"
+                                                    class="btn btn-primary btn-block btn-button-encurtar-reload">
+                                                    <i class="bi bi-arrow-clockwise"></i>
+                                                    Encurtar outra url
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-12">

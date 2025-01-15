@@ -43,7 +43,13 @@ const habilitaEventos = () => {
                 $(".btn-button-encurtar").attr("disabled", true);
             },
             success: function (response) {
-                console.log(response);
+                if (!response.error) {
+                    $(".container-url-encurtada").show();
+                    $("#url_encurtada").val(response.dados.enc_url);
+                    $(".btn-button-encurtar-reload").css("display", "block");
+                    $(".btn-button-encurtar").hide();
+                    $(".error-url").text("");
+                }
             },
             error: function (xhr) {
                 if (xhr.status === 422) {

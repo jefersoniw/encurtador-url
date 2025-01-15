@@ -19,4 +19,15 @@ class HomeController extends Controller
     {
         return response()->json($this->urlService->storeUrl($request->all()));
     }
+
+    public function show($url_enc)
+    {
+        $url = $this->urlService->findUrl($url_enc);
+
+        if ($url['error']) {
+            return redirect()->route('index')->with('message', $url['msg']);
+        }
+
+        return redirect($url->url);
+    }
 }
